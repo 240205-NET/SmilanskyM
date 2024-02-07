@@ -1,0 +1,15 @@
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\obj\Debug\net7.0\DataTypeAndVariables.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\obj\Debug\net7.0\DataTypeAndVariables.AssemblyInfoInputs.cache
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\obj\Debug\net7.0\DataTypeAndVariables.AssemblyInfo.cs
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\obj\Debug\net7.0\DataTypeAndVariables.csproj.CoreCompileInputs.cache
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\obj\Debug\net7.0\DataTypeAndVariables.sourcelink.json
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\bin\Debug\net7.0\DataTypeAndVariables.exe
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\bin\Debug\net7.0\DataTypeAndVariables.deps.json
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\bin\Debug\net7.0\DataTypeAndVariables.runtimeconfig.json
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\bin\Debug\net7.0\DataTypeAndVariables.dll
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\bin\Debug\net7.0\DataTypeAndVariables.pdb
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\obj\Debug\net7.0\DataTypeAndVariables.dll
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\obj\Debug\net7.0\refint\DataTypeAndVariables.dll
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\obj\Debug\net7.0\DataTypeAndVariables.pdb
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\obj\Debug\net7.0\DataTypeAndVariables.genruntimeconfig.cache
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\02_DataTypeAndVariables\DataTypeAndVariables\obj\Debug\net7.0\ref\DataTypeAndVariables.dll

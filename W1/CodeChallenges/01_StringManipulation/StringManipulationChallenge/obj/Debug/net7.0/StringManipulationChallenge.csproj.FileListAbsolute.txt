@@ -1,0 +1,15 @@
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\obj\Debug\net7.0\StringManipulationChallenge.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\obj\Debug\net7.0\StringManipulationChallenge.AssemblyInfoInputs.cache
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\obj\Debug\net7.0\StringManipulationChallenge.AssemblyInfo.cs
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\obj\Debug\net7.0\StringManipulationChallenge.csproj.CoreCompileInputs.cache
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\obj\Debug\net7.0\StringManipulationChallenge.sourcelink.json
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\bin\Debug\net7.0\StringManipulationChallenge.exe
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\bin\Debug\net7.0\StringManipulationChallenge.deps.json
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\bin\Debug\net7.0\StringManipulationChallenge.runtimeconfig.json
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\bin\Debug\net7.0\StringManipulationChallenge.dll
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\bin\Debug\net7.0\StringManipulationChallenge.pdb
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\obj\Debug\net7.0\StringManipulationChallenge.dll
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\obj\Debug\net7.0\refint\StringManipulationChallenge.dll
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\obj\Debug\net7.0\StringManipulationChallenge.pdb
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\obj\Debug\net7.0\StringManipulationChallenge.genruntimeconfig.cache
+C:\Users\msmil\dev\revature\Trainer_Code\W1\CodeChallenges\01_StringManipulation\StringManipulationChallenge\obj\Debug\net7.0\ref\StringManipulationChallenge.dll

@@ -1,0 +1,15 @@
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\bin\Debug\net8.0\FirstNET.exe
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\bin\Debug\net8.0\FirstNET.deps.json
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\bin\Debug\net8.0\FirstNET.runtimeconfig.json
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\bin\Debug\net8.0\FirstNET.dll
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\bin\Debug\net8.0\FirstNET.pdb
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\obj\Debug\net8.0\FirstNET.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\obj\Debug\net8.0\FirstNET.AssemblyInfoInputs.cache
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\obj\Debug\net8.0\FirstNET.AssemblyInfo.cs
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\obj\Debug\net8.0\FirstNET.csproj.CoreCompileInputs.cache
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\obj\Debug\net8.0\FirstNET.sourcelink.json
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\obj\Debug\net8.0\FirstNET.dll
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\obj\Debug\net8.0\refint\FirstNET.dll
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\obj\Debug\net8.0\FirstNET.pdb
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\obj\Debug\net8.0\FirstNET.genruntimeconfig.cache
+C:\Users\msmil\dev\revature\Trainer_Code\W1\FirstNET\obj\Debug\net8.0\ref\FirstNET.dll
