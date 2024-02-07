@@ -7,7 +7,8 @@
 		static void Main(string[] args)
 		{
 			budget = setInitialBudget();
-			expenses = enterExpenses();
+			enterExpenses();
+			displayExpenses();
 		}
 
 		public static double setInitialBudget()
@@ -20,20 +21,20 @@
 				string userInput = Console.ReadLine();
 				if (double.TryParse(userInput, out initialBudget))
 				{
-					Console.WriteLine($"Thank you. Budget set to {initialBudget}")
+					Console.WriteLine($"Thank you. Budget set to {initialBudget}");
 					numberObtained = true;
 				}
 				else
 				{
-					Console.WriteLine("Invalid input. Please try again with a double.")
+					Console.WriteLine("Invalid input. Please try again with a double.");
 				}
 			}
 			return initialBudget;
 		}
 
-		public static List<Dictionary<string, object>> enterExpenses()
+		public static void enterExpenses()
 		{
-			Console.WriteLine("Please enter some expenses.")
+			Console.WriteLine("Please enter some expenses.");
 			bool userDone = false;
 			bool amountObtained = false;
 			double amount = 0;
@@ -51,7 +52,29 @@
 					Console.WriteLine("Enter a description.");
 					description = Console.ReadLine();
 				}
-				Dictionary<string, object> newExpense = new Dictionary<string, object>();
+				Dictionary<string, object> newExpense = new Dictionary<string, object>{
+					{ "Amount", amount},
+					{ "Description", description}
+
+				};
+				expenses.Add(newExpense);
+
+				string addAnotherExpense = Console.ReadLine();
+
+				if (!(addAnotherExpense == "Y" || addAnotherExpense == "y"))
+				{
+					userDone = true;
+				}
+			}
+		}
+
+		public static void displayExpenses()
+		{
+
+			Console.WriteLine("Here are your expenses:");
+			foreach (var expense in expenses.SelectMany(exp => exp))
+			{
+				Console.WriteLine($"{expense.Key}: {expense.Value}");
 			}
 		}
 	}
