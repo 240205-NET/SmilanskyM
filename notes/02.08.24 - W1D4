@@ -1,0 +1,10 @@
+dotnet new sln within project dir
+
+dotnet new xunit -n Serializer.Test
+
+
+dotnet sln add ./Serializer
+"Project `Serializer\Serliaizer.csproj` added to the solution
+dotnet sln add .Serializer.Test/
+
+dotnet ./Serializer.Test/Serializer.Test.csproj reference ./Serializer/Serializer.csproj

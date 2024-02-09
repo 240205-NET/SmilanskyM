@@ -1,0 +1,118 @@
+most peopole also finished pep in july...
+"pretty sure we're working towards infosys"
+'infysos pays in advance to setup our training"
+
+w1 - c#. / .net
+w2 - sql (psql) - ado.net / efcore
+w3 - asp.net API generation
+w4 - web dev (html css js) mvc 
+w5 - angular (ts) 
+w6 - devops - cloud,automation, deployment and containerization
+if youre looking at a calendar that puts us at march 18th 
+as a cohort we are scheduled to go until wed of our seventh week 
+w7 - finish wed 3/20
+prepare for interviews during trianing (week 5/ week 6)?
+p1 p2 p3 projects
+
+p1 - w1 w2 indiv
+p2 - w3 w4 small team 3-4 members groups
+p3 - w5-7 together whole cohort
+
+what is git? github? version control? distributed / decentralized vc? no single source of truth, every copy is its own source of truth 
+
+centralized vc? (single source of truth)
+git pull will only update th folder you're in
+review remote pull fetch
+
+show commands
+
+
+To complete this level, do the following
+
+Checkout a new branch named bugFix
+Commit once
+Go back to main and commit again
+Check out bugFix again and rebase onto main
+Good luck!
+
+git rebase onto-branch branch-to-rebase-onto-onto-branch
+
+git checkout C4 <-- checking out commit (detached head)
+
+Moving upwards one commit at a time with ^
+Moving upwards a number of times with ~<num>
+
+So saying main^ is equivalent to "the first parent of main".
+main^^ is the grandparent (second-generation ancestor) of main
+
+You can directly reassign a branch to a commit with the -f option. So something like:
+git branch -f main HEAD~3
+moves (by force) the main branch to three parents behind HEAD.
+Note: In a real git environment git branch -f command is not allowed for your current branch.
+
+? does git branch -f erase main's history?
+	 this command doesn't erase the commit history; instead, it moves the branch pointer to a different commit. The commit history is still present in the Git repository, and you can access it using the commit SHA or other references.
+	 
+git reset reverses changes by moving a branch reference backwards in time to an older commit. In this sense you can think of it as "rewriting history;" git reset will move a branch backwards as if the commit had never been made in the first place.
+
+To complete this level, reverse the most recent commit on both local and pushed. You will revert two commits total (one per branch).
+
+Keep in mind that pushed is a remote branch and local is a local branch -- that should help you choose your methods.
+
+git reset
+git revert
+git cherry-pick <Commit1> <Commit2> <...>
+git rebase -i (interactive rebase) If you include this option, git will open up a UI to show you which commits are about to be copied below the target of the rebase. It also shows their commit hashes and messages, which is great for getting a bearing on what's what.
+
+
+Juggling Commits
+Here's another situation that happens quite commonly. You have some changes (newImage) and another set of changes (caption) that are related, so they are stacked on top of each other in your repository (aka one after another).
+
+The tricky thing is that sometimes you need to make a small modification to an earlier commit. In this case, design wants us to change the dimensions of newImage slightly, even though that commit is way back in our history!!
+
+
+So in this level, let's accomplish the same objective of amending C2 once but avoid using rebase -i. I'll leave it up to you to figure it out! :D
+
+Remember, the exact number of apostrophe's (') on the commit are not important, only the relative differences. For example, I will give credit to a tree that matches the goal tree but has one extra apostrophe everywhere.
+
+
+====
+For this level just create the tags in the goal visualization and then check v1 out. Notice how you go into detached HEAD state -- this is because you can't commit directly onto the v1 tag.
+
+In the next level we'll examine a more interesting use case for tags.
+
+git tag tag-name branch-name
+git describe <ref> The output of the command looks like:
+
+<tag>_<numCommits>_g<hash>
+
+Rebasing Multiple Branches
+Man, we have a lot of branches going on here! Let's rebase all the work from these branches onto main.
+
+Upper management is making this a bit trickier though -- they want the commits to all be in sequential order. So this means that our final tree should have C7' at the bottom, C6' above that, and so on, all in order.
+
+If you mess up along the way, feel free to use reset to start over again. Be sure to check out our solution and see if you can do it in fewer commands!
+
+Rather than specifying the number of generations to go back (what ~ takes), the modifier on ^ specifies which parent reference to follow from a merge commit. Remember that merge commits have multiple parents, so the path to choose is ambiguous.
+
+To complete this level, create a new branch at the specified destination.
+
+Obviously it would be easy to specify the commit directly (with something like C6), but I challenge you to use the modifiers we talked about instead!
+
+$ git branch bugWork main^^2^
+
+Branch Spaghetti
+WOAHHHhhh Nelly! We have quite the goal to reach in this level.
+
+Here we have main that is a few commits ahead of branches one two and three. For whatever reason, we need to update these three other branches with modified versions of the last few commits on main.
+
+Branch one needs a re-ordering of those commits and an exclusion/drop of C5. Branch two just needs a pure reordering of the commits, and three only needs one commit transferred!
+
+We will let you figure out how to solve this one -- make sure to check out our solution afterwards with show solution.
+==========================
+VERY GOOD EXPLANATION OF CLR, MANAGED CODE, COMMON INTERMEDIATE LANAAUGE (CIL) OR INTERMEDIATE LANAUGE (IL):
+In the context of the Common Language Runtime (CLR), managed code refers to code that is executed by the CLR and benefits from its runtime services such as automatic memory management (garbage collection), exception handling, and security enforcement. Managed code is typically written in high-level languages like C#.
+
+When you write C# code, it is initially in a high-level form that is easy for developers to understand. However, before execution, the C# code is compiled into an intermediate language called Common Intermediate Language (CIL) or Intermediate Language (IL). This IL is a low-level, platform-agnostic representation of the code that can be executed by the CLR.
+
+So, to clarify, the raw C# code you write is considered high-level and is not directly managed code. It becomes managed code when it is compiled into IL, and the CLR takes over the responsibility of executing and managing it at runtime. The IL is what is referred to as managed code in the context of the CLR.

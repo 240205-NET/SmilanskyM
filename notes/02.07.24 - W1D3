@@ -1,0 +1,51 @@
+infosys anchor client
+si - systems integrator - like cognizent
+provide teams to smaller ocmpanies or specific projects
+
+infosys plays the bills for the trianing
+95% sure hartford connectic ut
+quizzes qc will focus on functionarlity -w ha'ts most important for you to succeed?
+things like what syntax, what is an arrya, what syntax do we need?
+assessments...? will not ask about proper array syntax
+C# microsoft docs - we can use these on assessments!
+
+code challenge - how you write code - small window with pressure 
+Quiz assessments, rarely will we see an open-ended text input question - multiple t/f type are
+better because they can autojmate the grading
+don't need to know 4 diff types of ocntscutors,d just know whwat it does (that there are 4)
+how does polymorphism work
+friday - 12-1 meeting, some kind of client orientation
+meeting recording are in technical issue... IT working on it
+
+todo
+
+namespaces
+DateTime (part of System)
+an abstract method must be overridden by a derived class
+virtual methods can be overriden but don't have to be
+
+base.DisplayBalance
+base child super diffeerence chatgpt class
+
+polymorphism overloading overriding
+
+an abstract method must live in an abstract class
+next friday present project
+pull from repo when back from break
+
+Serialization - converting objects 
+to another format (no longer C#) so that another app can use them
+
+35:00 in second session of today... what did he say about private public fields?
+
+projects
+
+must be C#
+.NET console application
+has multiple classes
+at least one class must be abstract so we can inherit and leverage the abstract class
+must read and write from a file
+serialize somthing (and deserialize)
+can use JSON if you want (but we'll use XML later on so use that instead suggested...)
+push to personal repo
+
