@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTimer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Timer>
+    <Countdowns />
+  </Timer>
+  <Timer>
+    <name>My Timer 1</name>
+    <Countdowns>
+      <Countdown xsi:type="Session">
+        <name>hi</name>
+      </Countdown>
+    </Countdowns>
+  </Timer>
+  <Timer>
+    <name>My Timer 2</name>
+    <Countdowns>
+      <Countdown xsi:type="Session">
+        <name>hi</name>
+      </Countdown>
+    </Countdowns>
+  </Timer>
+  <Timer>
+    <name>My Timer 3</name>
+    <Countdowns>
+      <Countdown xsi:type="Session">
+        <name>hi</name>
+      </Countdown>
+    </Countdowns>
+  </Timer>
+  <Timer>
+    <name>My Timer 3</name>
+    <Countdowns>
+      <Countdown xsi:type="Session">
+        <name>hi</name>
+      </Countdown>
+    </Countdowns>
+  </Timer>
+  <Timer>
+    <name>My Timer 3</name>
+    <Countdowns>
+      <Countdown xsi:type="Session">
+        <name>hi</name>
+      </Countdown>
+    </Countdowns>
+  </Timer>
+</ArrayOfTimer>

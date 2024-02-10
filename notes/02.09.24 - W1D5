@@ -1,0 +1,8 @@
+bin folder where our build is 
+in ./bin/Debug is our net8.0 - build for that version
+in net8.0 we have dll, deps.json, exe, pdb, runtimeconfig.json
+
+dotnet build - rebuilds app, does not run it
+
+dotnet ./bin/Debug/net8.0/School.dll
+dotnet new gitignore
