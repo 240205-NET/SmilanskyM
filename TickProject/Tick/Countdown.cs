@@ -2,13 +2,17 @@
 // should have somewhat unique functionality and features 
 // For instance, the abstract Countdown class has an abstract Alert() function so that
 // Each type of countdown can alert the user when it's over in a different way (contextually speaking).
-
+using System.Xml.Serialization;
 namespace Tick
 {
 
+	[Serializable]
+	[XmlInclude(typeof(Session))]
+	[XmlInclude(typeof(ShortBreak))]
+	[XmlInclude(typeof(LongBreak))]
 	public abstract class Countdown
 	{
-		public int duration { get; set; };
+		public int duration { get; set; }
 
 		public Countdown(int duration)
 		{
@@ -20,7 +24,12 @@ namespace Tick
 
 	public class Session : Countdown
 	{
-		public string Alert()
+		public Session() : base(30)
+		{
+
+		}
+		public Session(int duration) : base(duration) { }
+		public override string Alert()
 		{
 			return "Time for a break!";
 		}
@@ -29,26 +38,35 @@ namespace Tick
 	public class ShortBreak : Countdown
 	{
 		// put interval long break here?
-
-		public string Alert()
+		public ShortBreak() : base(10)
 		{
-			return "That was a nice and short break! Back to work!"
+
+		}
+		public ShortBreak(int duration) : base(duration)
+		{
+
+		}
+
+		public override string Alert()
+		{
+			return "That was a nice and short break! Back to work!";
 		}
 	}
 
 	public class LongBreak : Countdown
 	{
-		public int interval { set; get; };
-		public int intervalCounter { set; get; };
+		public int interval { set; get; }
+		public int intervalCounter { set; get; } = 0;
 
-		public Countdown(int duration, int interval) : base(duration)
+		public LongBreak() : base(5)
+		{ }
+		public LongBreak(int duration, int interval) : base(duration)
 		{
 			this.interval = interval;
-			this.intervalCounter = 0;
 		}
-		public string Alert()
+		public override string Alert()
 		{
-			return "That was a nice and long break! Back to work!"
+			return "That was a nice and long break! Back to work!";
 		}
 	}
 }

@@ -1,19 +1,23 @@
 namespace Tick
 {
+	[Serializable]
 	public class Timer
 	{
-		public Dictionary<Countdown> countdowns { get; set; }
-
+		public List<Countdown> countdowns { get; set; }
+		public string name { get; set; }
 		public Timer()
 		{
-			this.name = name;
-			this.countdowns = new Dictionary<Countdown>()
-		{
-			{ "Session": new Session(30) },
-			{ "Short Break": new Session(5) },
-			{ "Long Break": new Session(10 , 5) }
+			this.name = "Name";
 		}
+
+		public Timer(string name)
+		{
+			this.name = name;
+			this.countdowns = new List<Countdown>();
+
+			this.countdowns.Add(new Session(30));
+			this.countdowns.Add(new ShortBreak(5));
+			this.countdowns.Add(new LongBreak(10, 5));
 		}
 	}
-
 }

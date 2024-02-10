@@ -1,0 +1,15 @@
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\obj\Debug\net8.0\Tick.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\obj\Debug\net8.0\Tick.AssemblyInfoInputs.cache
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\obj\Debug\net8.0\Tick.AssemblyInfo.cs
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\obj\Debug\net8.0\Tick.csproj.CoreCompileInputs.cache
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\obj\Debug\net8.0\Tick.sourcelink.json
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\bin\Debug\net8.0\Tick.exe
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\bin\Debug\net8.0\Tick.deps.json
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\bin\Debug\net8.0\Tick.runtimeconfig.json
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\bin\Debug\net8.0\Tick.dll
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\bin\Debug\net8.0\Tick.pdb
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\obj\Debug\net8.0\Tick.dll
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\obj\Debug\net8.0\refint\Tick.dll
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\obj\Debug\net8.0\Tick.pdb
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\obj\Debug\net8.0\Tick.genruntimeconfig.cache
+C:\Users\msmil\dev\revature\SmilanskyM\TickProject\Tick\obj\Debug\net8.0\ref\Tick.dll

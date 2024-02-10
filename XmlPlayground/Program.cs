@@ -10,17 +10,15 @@ namespace Tick
 	[XmlInclude(typeof(Session))]
 	public class Countdown
 	{
-		// Add your Countdown properties here
 	}
 
 	[Serializable]
 	public class Session : Countdown
 	{
 		public string name { get; set; }
-		// public Session() { } // Remove this if not needed
 		public Session()
 		{
-			this.name = string.Empty; // Default non-null value
+			this.name = string.Empty;
 		}
 		public Session(string name)
 		{
@@ -31,10 +29,8 @@ namespace Tick
 	[Serializable]
 	public class Timer
 	{
-
 		public string name { set; get; }
 		public List<Countdown> Countdowns { get; set; }
-
 		public Timer() { }
 		public Timer(string name)
 		{
@@ -52,7 +48,6 @@ namespace Tick
 		public static void SerializeToXml(List<Timer> timers, string filePath)
 		{
 			XmlSerializer serializer = new XmlSerializer(typeof(List<Timer>));
-
 			using (TextWriter writer = new StreamWriter(filePath))
 			{
 				serializer.Serialize(writer, timers);
@@ -62,32 +57,42 @@ namespace Tick
 		public static List<Timer> DeserializeFromXml(string filePath)
 		{
 			XmlSerializer serializer = new XmlSerializer(typeof(List<Timer>));
-
 			using (TextReader reader = new StreamReader(filePath))
 			{
 				return (List<Timer>)serializer.Deserialize(reader);
 			}
 		}
 
-		public static void AppendTimerToXml(string timerName)
+		public static void AddTimer(string timerName)
 		{
-			Timer newTimerToAppendToXml = new Timer(timerName);
-
+			Timer newTimer = new Timer(timerName);
 			XmlSerializer serializer = new XmlSerializer(typeof(List<Timer>));
-
-			List<Timer> listToStoreStoredTimersIn = TimerSerializer.DeserializeFromXml("timers.xml");
-
-			listToStoreStoredTimersIn.Add(newTimerToAppendToXml);
-
-			SerializeToXml(listToStoreStoredTimersIn, "timers.xml");
+			List<Timer> timers = TimerSerializer.DeserializeFromXml("timers.xml");
+			timers.Add(newTimer);
+			SerializeToXml(timers, "timers.xml");
 		}
 
-		public static Timer GetTimerByName(string name)
+		public static Timer GetTimer(string name)
 		{
 			List<Timer> timers = DeserializeFromXml("timers.xml");
 			Timer timer = timers.FirstOrDefault(timer => timer.name == name);
-			Console.Write(timer.name);
 			return timer;
+		}
+
+		public static Timer EditTimer(string name)
+		{
+			List<Timer> timers = DeserializeFromXml("timers.xml");
+			Timer timer = timers.FirstOrDefault(timer => timer.name == name);
+			timer.name = name;
+			TimerSerializer.SerializeToXml(timers, "timers.xml");
+			return timer;
+		}
+
+		public static void RemoveTimer(string name)
+		{
+			List<Timer> timers = DeserializeFromXml("timers.xml");
+			timers.RemoveAll(t => t.name == name);
+			TimerSerializer.SerializeToXml(timers, "timers.xml");
 		}
 
 	}
@@ -107,7 +112,9 @@ namespace Tick
 			// TimerSerializer.AppendTimerToXml("My Timer 3");
 
 			// edit a timer
-			TimerSerializer.GetTimerByName("My Timer 3");
+			// TimerSerializer.GetTimerByName("My Timer 3");
+			TimerSerializer.AddTimer("uwu new name");
+
 		}
 	}
 }
