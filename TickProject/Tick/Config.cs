@@ -8,7 +8,7 @@ namespace Tick.App
 {
 	public class Config
 	{
-		private string path = @".\config.xml";
+		public string path = @"./timers.xml";
 		public List<Timer> timers { get; set; }
 
 		public Config() { }
@@ -76,7 +76,7 @@ namespace Tick.App
 
 		public List<Timer> GetAllTimers()
 		{
-			List<Timers> timers = this.DeserializeFromXml("timeres.xml") ?? new List<Timer>();
+			List<Timer> timers = this.DeserializeFromXml("timers.xml") ?? new List<Timer>();
 			return timers;
 		}
 

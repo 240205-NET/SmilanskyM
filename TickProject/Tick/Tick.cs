@@ -39,6 +39,12 @@ namespace Tick.App
                 }
             }
         }
+        public static int Text2Num(string numText)
+        {
+            int num;
+            Int32.TryParse(numText, out num);
+            return num;
+        }
         public void Option1()
         {
             bool loop = true;
@@ -46,16 +52,44 @@ namespace Tick.App
             {
 
                 List<Timer> timers;
+                Timer timer;
                 if (File.Exists(this.config.path))
                 {
                     timers = this.config.GetAllTimers();
-                    if (!timers.Any())
+                    if (timers.Count <= 0)
                     {
-                        Console.WriteLine("Uh-oh, it doesn't look like there are any timers in your configuration file...\nlet's go ahead and create one for you.\n\n")
-                        Console.WriteLine("Name:");
+                        Console.WriteLine("Uh-oh, it doesn't look like there are any timers in your configuration file...\nlet's go ahead and create one for you.\n\n");
+
+                        Console.WriteLine("Choose a name:");
                         string name = Console.ReadLine();
-                        Console.WriteLine("")
+
+                        Console.WriteLine("Choose a session length (minutes):");
+                        string sessionLength = Console.ReadLine();
+
+                        Console.WriteLine("Choose a short break length (minutes):");
+                        string shortBreakLength = Console.ReadLine();
+
+                        Console.WriteLine("Choose a long break length (minutes):");
+                        string longBreakLength = Console.ReadLine();
+
+                        Console.WriteLine("Choose a long break interval:");
+                        string longBreakInterval = Console.ReadLine();
+
+                        timer = new Timer(name, Text2Num(sessionLength), Text2Num(shortBreakLength), 3, 4);
+                        timers.Add(timer);
+                        this.config.SerializeToXml(timers, this.config.path);
+                        Console.WriteLine("TIMER SUCCESSFULLY ADDED");
+                        return;
                     }
+                }
+                else
+                {
+
+                    timer = new Timer("New Timer", 30, 10, 5, 4);
+                    timers = new List<Timer>();
+                    timers.Add(timer);
+                    this.config.SerializeToXml(timers, this.config.path);
+                    Console.WriteLine(timers);
                 }
             }
         }
