@@ -4,17 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace Tick
+namespace Tick.App
 {
-
 	public class Config
 	{
 		private string path = @".\config.xml";
 		public List<Timer> timers { get; set; }
 
 		public Config() { }
-
-
 		public void AddTimer(Timer timer)
 		{
 			// 1) check if the config file exists
@@ -53,14 +50,6 @@ namespace Tick
 				return (List<Timer>)serializer.Deserialize(reader);
 			}
 		}
-		// public void AddTimer(string timerName)
-		// {
-		// 	Timer newTimer = new Timer(timerName);
-		// 	XmlSerializer serializer = new XmlSerializer(typeof(List<Timer>));
-		// 	List<Timer> timers = this.DeserializeFromXml("timers.xml");
-		// 	timers.Add(newTimer) ?? new List<Timer>();
-		// 	this.SerializeToXml(timers, "timers.xml");
-		// }
 
 		public Timer GetTimer(string name)
 		{
@@ -83,6 +72,12 @@ namespace Tick
 			List<Timer> timers = this.DeserializeFromXml("timers.xml");
 			timers.RemoveAll(t => t.name == name);
 			this.SerializeToXml(timers, "timers.xml");
+		}
+
+		public List<Timer> GetAllTimers()
+		{
+			List<Timers> timers = this.DeserializeFromXml("timeres.xml") ?? new List<Timer>();
+			return timers;
 		}
 
 	}

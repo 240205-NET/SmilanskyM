@@ -1,4 +1,4 @@
-namespace Tick
+namespace Tick.App
 {
 	[Serializable]
 	public class Timer
