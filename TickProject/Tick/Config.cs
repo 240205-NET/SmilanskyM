@@ -14,10 +14,6 @@ namespace Tick.App
 		public Config() { }
 		public void AddTimer(Timer timer)
 		{
-			// 1) check if the config file exists
-			// 2) if it does exist, check if there are any Timers in it. 
-			//		if there are timers in it, add the timer to the existing list
-			// if not, create a new list of Timers are add a new to the list
 			List<Timer> timers;
 			if (File.Exists(this.path))
 			{
@@ -76,8 +72,16 @@ namespace Tick.App
 
 		public List<Timer> GetAllTimers()
 		{
-			List<Timer> timers = this.DeserializeFromXml("timers.xml") ?? new List<Timer>();
-			return timers;
+			if (!File.Exists(this.path))
+			{
+				List<Timer> emptyTimers = new List<Timer>();
+				SerializeToXml(emptyTimers, this.path);
+				return emptyTimers;
+			}
+			else
+			{
+				return DeserializeFromXml(this.path);
+			}
 		}
 
 	}

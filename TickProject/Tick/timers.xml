@@ -3,17 +3,17 @@
   <Timer>
     <countdowns>
       <Countdown xsi:type="Session">
-        <duration>1</duration>
+        <duration>2</duration>
       </Countdown>
       <Countdown xsi:type="ShortBreak">
-        <duration>1</duration>
+        <duration>2</duration>
       </Countdown>
       <Countdown xsi:type="LongBreak">
-        <duration>3</duration>
-        <interval>4</interval>
+        <duration>2</duration>
+        <interval>2</interval>
         <intervalCounter>0</intervalCounter>
       </Countdown>
     </countdowns>
-    <name>1</name>
+    <name>2</name>
   </Timer>
 </ArrayOfTimer>
