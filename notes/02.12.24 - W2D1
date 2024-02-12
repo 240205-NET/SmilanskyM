@@ -1,0 +1,120 @@
+- String.Substring(startingIdx, howManyChars);
+- triple forward slash for XML commenting
+	-    /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="department"></param>
+        /// <param name="creditHours"></param>
+- _ deenote private field, no autoproperties attached to that
+dotnet new list
+	 class library
+	 dotnet new classlib -n School.Logic
+
+	 School.App folder = dotnet add reference ./../School.Logic/ (this will add a reference)
+	 if you're referencing the other project, you need to add using School.Logic (if within the school.app proj)
+
+	 default access modifier is private, this limits outside access
+	 internal will keep that object within the assembly
+	 private will restrict to taht object and its chidlren 
+	 FirstOrDefault returns the default value for the type (which is null for reference types like string)
+
+	 nullable - empty constructor when inheritng 
+
+	 MS-SQL/T-SQL/Transactional SQL
+
+	 SQL
+
+	 select,from,where,by,using,create,alter,drop,create,update,truncate,delete
+	 ddl, dml, dql,dcl
+	 double hyphen -- 
+- GO separtes different sections, it starts separating transactions - first create schema, then go on to next thing, create table then GO on to next thing.... etc.
+- master db holds metadata, user access etc. login info etc.  make sure you're pointing to your School database
+-if you highlight chunk of code you only run that codde in azure
+- create if not exist a thing? check it out. research it.
+
+/* Create Schema //////////////////////////////////
+///////////////////////////////////////////////////*/
+CREATE SCHEMA [School];
+GO
+
+/*DROP STATEMENT ////////////////////////////////////////
+////////////////////////////////////////////////////////*/
+-- DROP TABLE [School].[Pokemon];
+-- GO
+
+/* Create Tables //////////////////////////////////
+//////////////////////////////////////////////////*/
+
+CREATE TABLE [School].[Pokemon]
+(
+	Name VARCHAR(255) NOT NULL UNIQUE,
+	Weight INT NOT NULL,
+	Height INT NOT NULL,
+	Id INT PRIMARY KEY IDENTITY -- PK gets UNIQUE AND NOT NULL by default, IDENTITY provides Index starting at 1 and incrementing up 
+);
+GO
+
+CREATE TABLE [School].[Type]
+(
+	Id INT PRIMARY KEY IDENTITY,
+	Name NVARCHAR(64) NOT NULL UNIQUE
+)
+--multiplcity - the relationships between the tables/entries in the db
+-- 1-1 for each entry in table a, there is one and only one related entry in table b
+-- 1-m feach entry in table a, there are many related entires in table b
+-- m-m for many entries in table a, there are many related entries in table b
+-- to create a m - m relatiolnship in sql we need to use a linking table to establish two 1-m relationships 
+
+-- normilazations organizing our tables to separate concerns 1nf 2nf 3nf
+--1nf - The Key
+--2nf - the whole eky
+--3nf -  nothing but the key - teh dependent value is dependent on nothing but the key
+atomicity - every entry must be atomic - one field, one entry
+
+CREATE TABLE [School].[PokemonType]
+(
+	Id INT PRIMARY KEY IDENTITY,
+	PokemonId INT NOT NULL FOREIGN KEY REFERENCES [School].[Pokemon] (Id) ON DELETE CASCADE, -- references Id field of School.pokemon table, cascade deletes
+	TypeId INT NOT NULL FOREIGN KEY REFERENCES [School].[Type] (Id) ON DELETE CASCADE
+	-- CASCADE triggers the specific column to also delete/update when the FK entry is modified
+)
+GO
+
+-- no need to entery id, we nade it entity to auto incr for us
+-- single quotes for strings!!
+INSERT INTO [School].[Pokemon]
+(Name,Height,Weight)
+VALUES
+('Charizard',67,215),
+('Mudkip',24,45);
+
+INSERT INTO [School].[Type]
+(Name)
+VALUES
+('Fire'),
+('Water'),
+('Dragon'),
+('Grass'),
+('Flying');
+GO
+
+INSERT INTO [School].[PokemonType]
+(PokemonId, TypeId)
+VALUES
+(1,1),
+(1,5)
+(2,2);
+GO
+
+-- top = first entries u find - first 1000
+/*
+SELECT TOP (100) [Name]
+,[Weight]
+,[Height]
+,[Id]
+FROM [School].[Pokemon]
+*/
+
+
+tmrw -- JOINS, CHINOOK,
