@@ -5,11 +5,10 @@ namespace Tick.App
     class Tick
     {
 
-        Config config = new Config();
-        Menu menu = new Menu();
-        private bool active = true;
+        readonly Config config = new Config();
+        readonly Menu menu = new Menu();
         public bool isPaused = false;
-
+        private volatile bool timerActive = true;
         public void ContentWrapper(Action func)
         {
             this.menu.GetCurrentView();
@@ -21,7 +20,7 @@ namespace Tick.App
             bool loop = true;
             while (loop)
             {
-
+                Console.Clear();
                 this.menu.currentView = "Main Menu";
                 this.menu.DisplayWelcomeMessage();
                 this.ContentWrapper(this.menu.DisplayMenuView);
@@ -34,12 +33,12 @@ namespace Tick.App
                     case "1":
                         Console.Clear();
                         this.menu.currentView = "Choose Timer";
-                        this.ContentWrapper(this.Option1);
+                        this.ContentWrapper(this.ChooseTimer);
                         break;
                     case "2":
                         Console.Clear();
                         this.menu.currentView = "Add Timer";
-                        this.ContentWrapper(this.Option2);
+                        this.ContentWrapper(this.AddNewTimer);
                         break;
                     default:
                         break;
@@ -65,16 +64,7 @@ namespace Tick.App
                 }
             }
         }
-        public static int GetUserInputInt()
-        {
-            bool success = false;
-            int num;
-            while (!Int32.TryParse(Console.ReadLine(), out num))
-            {
-                Console.Write("Sorry, that input is invalid; you must enter a number: ");
-            }
-            return num;
-        }
+
         public void AddNewTimer()
         {
             // Prompt user to add new timer
@@ -82,22 +72,22 @@ namespace Tick.App
             string name = Console.ReadLine();
 
             Console.Write("Choose a session length (minutes): ");
-            int sessionLength = Tick.GetUserInputInt();
+            int sessionLength = InputManager.GetInt();
 
             Console.Write("Choose a short break length (minutes): ");
-            int shortBreakLength = Tick.GetUserInputInt();
+            int shortBreakLength = InputManager.GetInt();
 
             Console.WriteLine("Choose a long break length (minutes): ");
-            int longBreakLength = Tick.GetUserInputInt();
+            int longBreakLength = InputManager.GetInt();
 
             Console.WriteLine("Choose a long break interval: ");
-            int longBreakInterval = Tick.GetUserInputInt();
+            int longBreakInterval = InputManager.GetInt();
 
             // Initialize new timer and add to confing 
             Timer timer = new Timer(name, sessionLength, shortBreakLength, longBreakLength, longBreakInterval);
             this.config.AddTimer(timer);
 
-            Thread thread = new Thread(this.InputListener);
+            //Thread thread = new Thread(this.InputListener);
 
             Thread.Sleep(1000);
             Console.WriteLine("...");
@@ -107,7 +97,7 @@ namespace Tick.App
             Console.WriteLine("Timer added succssfully!");
             Thread.Sleep(1000);
         }
-        public void Option1()
+        public void ChooseTimer()
         {
             List<Timer> timers = this.config.GetAllTimers();
             bool loop = true;
@@ -128,22 +118,25 @@ namespace Tick.App
                         {
                             Console.Write($"{t.name} - {t.countdowns[0].duration}, {t.countdowns[1].duration}, {t.countdowns[2].duration}");
                             // Since Countdown does not include the 'interval' field (only LongBreak does), you can't iterate over Countdowns to get to 'interval'; Instead, check if it's of type LongBreak.
-                            if (t.countdowns[2] is LongBreak longBreak) { Console.WriteLine($"{longBreak.interval}\n"); } else { Console.WriteLine("TODO"); }
+                            if (t.countdowns[2] is LongBreak longBreak) { Console.WriteLine($"{longBreak.interval}"); } else { Console.WriteLine("TODO"); }
 
-                            bool validTimer = false;
-                            while (!validTimer)
+                        }
+                        bool validTimer = false;
+                        while (!validTimer)
+                        {
+                            Console.Write("\nYour choice: ");
+                            string userInput = Console.ReadLine();
+                            Timer chosenTimer = timers.FirstOrDefault(t => t.name == userInput);
+                            if (chosenTimer == null)
                             {
-                                string userInput = Console.ReadLine();
-                                Timer chosenTimer = timers.FirstOrDefault(t => t.name == userInput);
-                                if (chosenTimer == null)
-                                {
-                                    Console.WriteLine("Sorry, there is no timer with that name. Please enter a valid name.");
-                                }
-                                else
-                                {
-                                    validTimer = true;
-                                    Console.Clear();
-                                }
+                                Console.WriteLine("Sorry, there is no timer with that name. Please enter a valid name.");
+                            }
+                            else
+                            {
+                                validTimer = true;
+                                Console.Clear();
+                                this.menu.currentView = "Run Timer";
+                                this.RunTimer(chosenTimer);
                             }
                         }
                     }
@@ -155,34 +148,108 @@ namespace Tick.App
                 loop = false;
             }
         }
-        public void Option2()
+        public void RunTimer(Timer timer)
         {
-            int seconds = 2;
-            bool timerOver = seconds <= 0;
-            Thread inputThread = new Thread(this.InputListener);
-            inputThread.Start();
-            while (seconds >= 0)
+            this.timerActive = true;
+            Thread keyListener = new Thread(() =>
             {
-                if (!isPaused)
+                while (this.timerActive)
                 {
+                    ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
-                    // This effectively clears the screen. We move the cursor to the start of the line and then write over it. 
-                    Console.SetCursorPosition(0, Console.CursorTop);
-                    Console.Write($"Elapsed Time: {seconds} seconds"); // Overwrite previous output
-
-                    // Increment the timer and wait for 1 second
-                    seconds--;
-
+                    if (keyInfo.KeyChar == 'p' || keyInfo.KeyChar == 'P')
+                    {
+                        timer.paused = true;
+                    }
+                    else if (keyInfo.KeyChar == 'c' || keyInfo.KeyChar == 'C')
+                    {
+                        timer.paused = false;
+                    }
+                    else if (keyInfo.Key == ConsoleKey.Escape)
+                    {
+                        this.timerActive = false;
+                        return;
+                    }
                 }
-                Thread.Sleep(1000);
+            });
+
+            keyListener.Start();
+            while (this.timerActive)
+            {
+                if (timer.currentMode == "Session")
+                {
+                    timer.currentDuration = timer.countdowns[0].duration;
+                    while (timer.currentDuration >= 0)
+                    {
+                        if (!this.timerActive)
+                        {
+                            Console.Clear();
+                            return;
+                        }
+                        if (!timer.paused)
+                        {
+                            this.menu.DisplayTimerState(timer);
+                            timer.currentDuration--;
+                        }
+                        Thread.Sleep(1000);
+                    }
+                    if (timer.longBreakCounter == 0)
+                    {
+                        timer.currentMode = "Long Break";
+                        timer.longBreakInterval = 0;
+                    }
+                    else
+                    {
+                        timer.currentMode = "Short Break";
+                    }
+                    Console.Clear();
+                }
+
+                if (timer.currentMode == "Short Break")
+                {
+                    timer.currentDuration = timer.countdowns[1].duration;
+                    while (timer.currentDuration >= 0)
+                    {
+                        if (!this.timerActive)
+                        {
+                            Console.Clear();
+                            return;
+                        }
+                        if (!timer.paused)
+                        {
+                            this.menu.DisplayTimerState(timer);
+                            timer.currentDuration--;
+
+                        }
+                        Thread.Sleep(1000);
+                    }
+                    timer.longBreakCounter--;
+                    timer.currentMode = "Session";
+                    Console.Clear();
+                }
+                if (timer.currentMode == "Long Break")
+                {
+                    timer.longBreakCounter = 4;
+                    timer.currentDuration = timer.countdowns[2].duration;
+                    while (timer.currentDuration >= 0)
+                    {
+                        if (!this.timerActive)
+                        {
+                            Console.Clear();
+                            return;
+                        }
+                        if (!timer.paused)
+                        {
+                            this.menu.DisplayTimerState(timer);
+                            timer.currentDuration--;
+
+                        }
+                        Thread.Sleep(1000);
+                    }
+                    timer.currentMode = "Session";
+                    Console.Clear();
+                }
             }
-
-            Console.SetCursorPosition(0, Console.CursorTop);
-        }
-        public void Prompt1()
-        {
-
         }
     }
-
 }

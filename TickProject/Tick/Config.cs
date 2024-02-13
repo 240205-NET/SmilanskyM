@@ -58,7 +58,10 @@ namespace Tick.App
 		{
 			List<Timer> timers = this.DeserializeFromXml("timers.xml");
 			Timer timer = timers.FirstOrDefault(timer => timer.name == name);
-			timer.name = name;
+			if (timer != null)
+			{
+				timer.name = name;
+			}
 			this.SerializeToXml(timers, "timers.xml");
 			return timer;
 		}
@@ -83,7 +86,5 @@ namespace Tick.App
 				return DeserializeFromXml(this.path);
 			}
 		}
-
 	}
-
 }

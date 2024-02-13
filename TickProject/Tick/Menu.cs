@@ -34,5 +34,13 @@ namespace Tick.App
 			Console.WriteLine("Welcome to Tick! The greatest Pomodoro CLI ever created.\n");
 		}
 
+		public void DisplayTimerState(Timer timer)
+		{
+			Console.SetCursorPosition(0, Console.CursorTop);
+			Console.WriteLine($"Sessions until long break: {timer.longBreakCounter}");
+
+			Console.SetCursorPosition(0, 1);
+			Console.Write($"Elapsed {timer.currentMode} Time: {timer.currentDuration} seconds");
+		}
 	}
 }

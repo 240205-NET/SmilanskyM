@@ -5,6 +5,12 @@ namespace Tick.App
 	{
 		public List<Countdown> countdowns { get; set; }
 		public string name { get; set; }
+		public int longBreakInterval { get; set; } = 4;
+		public int longBreakCounter { get; set; } = 4;
+		public string currentMode { get; set; } = "Session";
+		public string nextMode { get; set; } = "Short Break";
+		public int currentDuration { get; set; }
+		public bool paused { get; set; } = false;
 		public Timer()
 		{
 			this.name = "Name";
@@ -18,6 +24,8 @@ namespace Tick.App
 			this.countdowns.Add(new Session(sessionLength));
 			this.countdowns.Add(new ShortBreak(shortBreakLength));
 			this.countdowns.Add(new LongBreak(longBreakLength, longBreakInterval));
+			this.currentDuration = this.countdowns[0].duration;
+			this.longBreakCounter = this.longBreakInterval;
 		}
 	}
 }

@@ -3,6 +3,28 @@
   <Timer>
     <countdowns>
       <Countdown xsi:type="Session">
+        <duration>3</duration>
+      </Countdown>
+      <Countdown xsi:type="ShortBreak">
+        <duration>3</duration>
+      </Countdown>
+      <Countdown xsi:type="LongBreak">
+        <duration>3</duration>
+        <interval>3</interval>
+        <intervalCounter>0</intervalCounter>
+      </Countdown>
+    </countdowns>
+    <name>rrlerj</name>
+    <longBreakInterval>4</longBreakInterval>
+    <longBreakCounter>4</longBreakCounter>
+    <currentMode>Session</currentMode>
+    <nextMode>Short Break</nextMode>
+    <currentDuration>3</currentDuration>
+    <paused>false</paused>
+  </Timer>
+  <Timer>
+    <countdowns>
+      <Countdown xsi:type="Session">
         <duration>2</duration>
       </Countdown>
       <Countdown xsi:type="ShortBreak">
@@ -14,6 +36,12 @@
         <intervalCounter>0</intervalCounter>
       </Countdown>
     </countdowns>
-    <name>2</name>
+    <name>arlen</name>
+    <longBreakInterval>4</longBreakInterval>
+    <longBreakCounter>4</longBreakCounter>
+    <currentMode>Session</currentMode>
+    <nextMode>Short Break</nextMode>
+    <currentDuration>2</currentDuration>
+    <paused>false</paused>
   </Timer>
 </ArrayOfTimer>
