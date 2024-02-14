@@ -1,0 +1,6 @@
+create db
+connect to it
+create simple queries
+get student, all st udent, teachers, all teachers
+
+keep in proram class b ut outside main
