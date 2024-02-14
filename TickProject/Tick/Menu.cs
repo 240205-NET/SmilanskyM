@@ -1,6 +1,6 @@
 namespace Tick.App
 {
-	class Menu
+	public class Menu
 	{
 		public string currentView;
 		public Menu()
@@ -34,13 +34,39 @@ namespace Tick.App
 			Console.WriteLine("Welcome to Tick! The greatest Pomodoro CLI ever created.\n");
 		}
 
+		public static string DisplayTimerPaused(Timer timer)
+		{
+			return timer.paused ? "TIMER PAUSED" : "TIMER ACTIVE";
+		}
 		public void DisplayTimerState(Timer timer)
 		{
-			Console.SetCursorPosition(0, Console.CursorTop);
-			Console.WriteLine($"Sessions until long break: {timer.longBreakCounter}");
+			// SetCursorPosition + WriteLine = redraw text starting at this specific coordinate
+			// 0, Console.CursorTop = Line 1, Col 1
+			Console.CursorVisible = false;
+			Console.SetCursorPosition(0, 0);
+			Console.WriteLine($"Sessions until long break: {timer.longBreakCounter}\n");
 
+			// 0, 1 = Line 1, Col 2
+			//
 			Console.SetCursorPosition(0, 1);
-			Console.Write($"Elapsed {timer.currentMode} Time: {timer.currentDuration} seconds");
+			Console.Write(new string(' ', Console.WindowWidth));
+			Console.SetCursorPosition(0, 1);
+			Console.Write($"Elapsed {timer.currentMode} Time: {Menu.FormatTime(timer.currentDuration)}");
+
+			Console.SetCursorPosition(0, 4);
+			Console.Write(Menu.DisplayTimerPaused(timer));
+
+			Console.SetCursorPosition(0, 6);
+			Console.Write("(P) - PAUSE        (C) CONTINUE        (ESC) QUIT TO MENU");
 		}
+
+		public static string FormatTime(int totalSeconds)
+		{
+			int minutes = totalSeconds / 60;
+			int seconds = totalSeconds % 60;
+			return $"{minutes:D2}:{seconds:D2}"; // Formats the string to "MM:SS"
+		}
+
+
 	}
 }

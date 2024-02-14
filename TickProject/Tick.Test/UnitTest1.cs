@@ -1,21 +1,58 @@
 namespace Tick.Test;
+using System;
+using System.IO;
+using System.Xml.Serialization;
 
+using System.IO;
 using Tick.App;
 public class UnitTest1
 {
     [Fact]
-    public void Test1()
-    {
-
-    }
-    [Fact]
     public void StringToIntReturnsInt()
     {
-        // Arrange
-        // Act
         var actual = InputManager.StringToInt("4");
 
-        // Assert
         Assert.IsType<int>(actual);
+    }
+
+    [Fact]
+    public void Timer_CreateTimer_Works()
+    {
+        var actual = new Timer("Test Timer");
+        Assert.IsType<Timer>(actual);
+    }
+
+    [Fact]
+    public void Menu_DisplayWelcomeMessage_Works()
+    {
+        StringWriter writer = new StringWriter();
+        Console.SetOut(writer);
+        Menu menu = new Menu();
+        menu.DisplayWelcomeMessage();
+
+        Assert.Equal("Welcome to Tick! The greatest Pomodoro CLI ever created.\n\r\n", writer.ToString());
+    }
+
+    [Fact]
+    public void Timer_AddTimer_Works()
+    {
+        Timer timer = new Timer("Test Timer");
+        Config config = new Config();
+        config.AddTimer(timer);
+        XmlSerializer serializer = new XmlSerializer(typeof(List<Timer>));
+        List<Timer> timers;
+        using (TextReader reader = new StreamReader(@"./timers.xml"))
+        {
+            timers = (List<Timer>)serializer.Deserialize(reader);
+        }
+        Timer addedTimer = timers.Find(t => t.name == "Test Timer");
+        Assert.Equal("Test Timer", addedTimer.name);
+    }
+
+    [Fact]
+    public void Menu_FormatTime_Works()
+    {
+        string formattedString = Menu.FormatTime(120);
+        Assert.Equal("02:00", formattedString);
     }
 }

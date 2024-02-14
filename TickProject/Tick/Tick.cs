@@ -8,11 +8,11 @@ namespace Tick.App
         readonly Config config = new Config();
         readonly Menu menu = new Menu();
         public bool isPaused = false;
-        private volatile bool timerActive = true;
-        public void ContentWrapper(Action func)
+        public volatile bool timerActive = true;
+        public void ContentWrapper(Action content)
         {
             this.menu.GetCurrentView();
-            func();
+            content();
         }
 
         public void Run()
@@ -47,23 +47,6 @@ namespace Tick.App
         }
 
 
-        public void InputListener()
-        {
-            // TODO add switch case
-            while (true)
-            {
-                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-
-                if (keyInfo.KeyChar == 'p')
-                {
-                    this.isPaused = true;
-                }
-                else if (keyInfo.KeyChar == 'c')
-                {
-                    this.isPaused = false;
-                }
-            }
-        }
 
         public void AddNewTimer()
         {
@@ -86,8 +69,6 @@ namespace Tick.App
             // Initialize new timer and add to confing 
             Timer timer = new Timer(name, sessionLength, shortBreakLength, longBreakLength, longBreakInterval);
             this.config.AddTimer(timer);
-
-            //Thread thread = new Thread(this.InputListener);
 
             Thread.Sleep(1000);
             Console.WriteLine("...");
@@ -178,7 +159,7 @@ namespace Tick.App
             {
                 if (timer.currentMode == "Session")
                 {
-                    timer.currentDuration = timer.countdowns[0].duration;
+                    timer.currentDuration = timer.countdowns[0].duration * 60; // mins to seconds
                     while (timer.currentDuration >= 0)
                     {
                         if (!this.timerActive)
@@ -190,6 +171,10 @@ namespace Tick.App
                         {
                             this.menu.DisplayTimerState(timer);
                             timer.currentDuration--;
+                        }
+                        else
+                        {
+                            this.menu.DisplayTimerState(timer);
                         }
                         Thread.Sleep(1000);
                     }
@@ -207,7 +192,7 @@ namespace Tick.App
 
                 if (timer.currentMode == "Short Break")
                 {
-                    timer.currentDuration = timer.countdowns[1].duration;
+                    timer.currentDuration = timer.countdowns[1].duration * 60;
                     while (timer.currentDuration >= 0)
                     {
                         if (!this.timerActive)
@@ -230,7 +215,7 @@ namespace Tick.App
                 if (timer.currentMode == "Long Break")
                 {
                     timer.longBreakCounter = 4;
-                    timer.currentDuration = timer.countdowns[2].duration;
+                    timer.currentDuration = timer.countdowns[2].duration * 60;
                     while (timer.currentDuration >= 0)
                     {
                         if (!this.timerActive)

@@ -1,0 +1,16 @@
+SQL
+
+JOINS
+
+inner/outer JOINS
+
+inner join - 
+left
+right
+cross
+cartesian
+
+w2 folder -shinook - sql db - loading this db into our remote (the db we made yesterday)
+set of challenges we run against shinook db we built - this'll take an hour about for these challenges
+
+dotnet add package System.Data.SqlClient

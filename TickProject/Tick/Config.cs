@@ -12,24 +12,7 @@ namespace Tick.App
 		public List<Timer> timers { get; set; }
 
 		public Config() { }
-		public void AddTimer(Timer timer)
-		{
-			List<Timer> timers;
-			if (File.Exists(this.path))
-			{
-				XmlSerializer serializer = new XmlSerializer(typeof(List<Timer>));
-				timers = this.DeserializeFromXml("timers.xml");
-			}
-			else
-			{
-				timers = new List<Timer>();
-			}
-
-			timers.Add(timer);
-			this.SerializeToXml(timers, "timers.xml");
-		}
-
-		public void SerializeToXml(List<Timer> timers, string filePath)
+		public static void SerializeToXml(List<Timer> timers, string filePath)
 		{
 			XmlSerializer serializer = new XmlSerializer(typeof(List<Timer>));
 			using (TextWriter writer = new StreamWriter(filePath))
@@ -38,7 +21,7 @@ namespace Tick.App
 			}
 		}
 
-		public List<Timer> DeserializeFromXml(string filePath)
+		public static List<Timer> DeserializeFromXml(string filePath)
 		{
 			XmlSerializer serializer = new XmlSerializer(typeof(List<Timer>));
 			using (TextReader reader = new StreamReader(filePath))
@@ -46,39 +29,18 @@ namespace Tick.App
 				return (List<Timer>)serializer.Deserialize(reader);
 			}
 		}
-
 		public Timer GetTimer(string name)
 		{
-			List<Timer> timers = this.DeserializeFromXml("timers.xml");
+			List<Timer> timers = Config.DeserializeFromXml("timers.xml");
 			Timer timer = timers.FirstOrDefault(timer => timer.name == name);
 			return timer;
 		}
-
-		public Timer EditTimer(string name)
-		{
-			List<Timer> timers = this.DeserializeFromXml("timers.xml");
-			Timer timer = timers.FirstOrDefault(timer => timer.name == name);
-			if (timer != null)
-			{
-				timer.name = name;
-			}
-			this.SerializeToXml(timers, "timers.xml");
-			return timer;
-		}
-
-		public void RemoveTimer(string name)
-		{
-			List<Timer> timers = this.DeserializeFromXml("timers.xml");
-			timers.RemoveAll(t => t.name == name);
-			this.SerializeToXml(timers, "timers.xml");
-		}
-
 		public List<Timer> GetAllTimers()
 		{
 			if (!File.Exists(this.path))
 			{
 				List<Timer> emptyTimers = new List<Timer>();
-				SerializeToXml(emptyTimers, this.path);
+				Config.SerializeToXml(emptyTimers, this.path);
 				return emptyTimers;
 			}
 			else
@@ -86,5 +48,42 @@ namespace Tick.App
 				return DeserializeFromXml(this.path);
 			}
 		}
+		public void AddTimer(Timer timer)
+		{
+			List<Timer> timers;
+			if (File.Exists(this.path))
+			{
+				XmlSerializer serializer = new XmlSerializer(typeof(List<Timer>));
+				timers = Config.DeserializeFromXml("timers.xml");
+			}
+			else
+			{
+				timers = new List<Timer>();
+			}
+
+			timers.Add(timer);
+			Config.SerializeToXml(timers, "timers.xml");
+		}
+
+		public Timer EditTimer(string name)
+		{
+			List<Timer> timers = Config.DeserializeFromXml("timers.xml");
+			Timer timer = timers.FirstOrDefault(timer => timer.name == name);
+			if (timer != null)
+			{
+				timer.name = name;
+			}
+			Config.SerializeToXml(timers, "timers.xml");
+			return timer;
+		}
+
+		public void RemoveTimer(string name)
+		{
+			List<Timer> timers = Config.DeserializeFromXml("timers.xml");
+			timers.RemoveAll(t => t.name == name);
+			Config.SerializeToXml(timers, "timers.xml");
+		}
+
+
 	}
 }
