@@ -1,5 +1,5 @@
 using System.IO;
-
+using System.Text;
 namespace Tick.App
 {
     class Tick
@@ -17,6 +17,8 @@ namespace Tick.App
 
         public void Run()
         {
+
+
             bool loop = true;
             while (loop)
             {
@@ -40,13 +42,36 @@ namespace Tick.App
                         this.menu.currentView = "Add Timer";
                         this.ContentWrapper(this.AddNewTimer);
                         break;
+                    case "3":
+                        Console.Clear();
+                        this.menu.currentView = "View Timers";
+                        this.ContentWrapper(this.ViewTimers);
+                        break;
                     default:
                         break;
                 }
             }
         }
 
+        public void ViewTimers()
+        {
+            List<Timer> allTimers = this.config.GetAllTimers();
+            string formattedTimers = this.menu.FormatTimerList(allTimers);
+            bool viewingTimers = true;
+            while (viewingTimers)
+            {
+                Console.WriteLine(formattedTimers);
+                Console.WriteLine();
+                Console.WriteLine("***PRESS (ESC} TO RETURN TO MAIN MENU***");
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                if (keyInfo.Key == ConsoleKey.Escape)
+                {
+                    viewingTimers = false;
+                    return;
+                }
+            }
 
+        }
 
         public void AddNewTimer()
         {

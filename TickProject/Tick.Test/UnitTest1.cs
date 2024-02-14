@@ -55,4 +55,32 @@ public class UnitTest1
         string formattedString = Menu.FormatTime(120);
         Assert.Equal("02:00", formattedString);
     }
+
+    [Fact]
+    public void Menu_DisplayTimerPaused_WorksWhenPaused()
+    {
+        Timer timer = new Timer("Test Timer");
+        timer.paused = true;
+        var actual = Menu.DisplayTimerPaused(timer);
+        Assert.Equal("TIMER PAUSED", actual);
+    }
+
+    [Fact]
+    public void Menu_DisplayTimerPaused_WorksWhenActive()
+    {
+
+        Timer timer = new Timer("Test Timer");
+        var actual = Menu.DisplayTimerPaused(timer);
+        Assert.Equal("TIMER ACTIVE", actual);
+    }
+
+    [Fact]
+    public void Menu_GetCurrentView_Works()
+    {
+        StringWriter writer = new StringWriter();
+        Console.SetOut(writer);
+        Menu menu = new Menu();
+        menu.GetCurrentView();
+        Assert.Equal($"+++++++++++++++++++++++++\r\n {menu.currentView}\r\n+++++++++++++++++++++++++\n\r\n", writer.ToString());
+    }
 }

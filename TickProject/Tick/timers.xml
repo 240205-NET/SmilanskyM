@@ -3,45 +3,45 @@
   <Timer>
     <countdowns>
       <Countdown xsi:type="Session">
-        <duration>3</duration>
+        <duration>30</duration>
       </Countdown>
       <Countdown xsi:type="ShortBreak">
-        <duration>3</duration>
+        <duration>5</duration>
       </Countdown>
       <Countdown xsi:type="LongBreak">
-        <duration>3</duration>
-        <interval>3</interval>
+        <duration>33</duration>
+        <interval>33</interval>
         <intervalCounter>0</intervalCounter>
       </Countdown>
     </countdowns>
-    <name>rrlerj</name>
+    <name>my timer</name>
     <longBreakInterval>4</longBreakInterval>
     <longBreakCounter>4</longBreakCounter>
     <currentMode>Session</currentMode>
     <nextMode>Short Break</nextMode>
-    <currentDuration>3</currentDuration>
+    <currentDuration>30</currentDuration>
     <paused>false</paused>
   </Timer>
   <Timer>
     <countdowns>
       <Countdown xsi:type="Session">
-        <duration>2</duration>
+        <duration>1</duration>
       </Countdown>
       <Countdown xsi:type="ShortBreak">
-        <duration>2</duration>
+        <duration>1</duration>
       </Countdown>
       <Countdown xsi:type="LongBreak">
-        <duration>2</duration>
-        <interval>2</interval>
+        <duration>1</duration>
+        <interval>1</interval>
         <intervalCounter>0</intervalCounter>
       </Countdown>
     </countdowns>
-    <name>arlen</name>
+    <name>test timer</name>
     <longBreakInterval>4</longBreakInterval>
     <longBreakCounter>4</longBreakCounter>
     <currentMode>Session</currentMode>
     <nextMode>Short Break</nextMode>
-    <currentDuration>2</currentDuration>
+    <currentDuration>1</currentDuration>
     <paused>false</paused>
   </Timer>
 </ArrayOfTimer>
