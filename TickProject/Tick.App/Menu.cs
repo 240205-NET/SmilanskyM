@@ -7,9 +7,12 @@ namespace Tick.App
 		public string currentView;
 		public Menu()
 		{
-			this.currentView = "Main Menu";
+			this.currentView = "Main Menu"; // "Main Menu" is the default view.
 		}
-
+		public void SetCurrentView(string currentView)
+		{
+			this.currentView = currentView;
+		}
 		public void GetCurrentView()
 		{
 			Console.ForegroundColor = ConsoleColor.Yellow;
@@ -44,10 +47,7 @@ namespace Tick.App
 			}
 			return formattedTimers.ToString();
 		}
-		public void SetCurrentView(string currentView)
-		{
-			this.currentView = currentView;
-		}
+
 
 		public void DisplayMenuView()
 		{
@@ -67,36 +67,19 @@ namespace Tick.App
 
 		public static string DisplayTimerPaused(Timer timer)
 		{
-			return timer.paused ? "TIMER PAUSED" : "TIMER ACTIVE";
+			return timer.paused ? "Timer PAUSED" : "Timer ACTIVE";
 		}
 		public void DisplayTimerState(Timer timer)
 		{
-			// // SetCursorPosition + WriteLine = redraw text starting at this specific coordinate
-			// // 0, Console.CursorTop = Line 1, Col 1
-			// Console.CursorVisible = false;
-			// Console.SetCursorPosition(0, 0);
-			// Console.WriteLine($"Sessions until long break: {timer.longBreakCounter}\n");
-
-			// // 0, 1 = Line 1, Col 2
-			// //
-			// Console.SetCursorPosition(0, 1);
-			// Console.Write(new string(' ', Console.WindowWidth));
-			// Console.SetCursorPosition(0, 1);
-			// Console.Write($"Elapsed {timer.currentMode} Time: {Menu.FormatTime(timer.currentDuration)}");
-
-			// Console.SetCursorPosition(0, 4);
-			// Console.Write(Menu.DisplayTimerPaused(timer));
-
-			// Console.SetCursorPosition(0, 6);
-			// Console.Write("(P) - PAUSE        (C) CONTINUE        (ESC) QUIT TO MENU");
-			// SetCursorPosition + WriteLine = redraw text starting at this specific coordinate
-			// 0, Console.CursorTop = Line 1, Col 1
+			// The StringBuilder approach (as opposed to using Console.WriteLine()s) is advantageous because:
+			// 1) The cursor position only needs to be set once as opposed to on every line we want to draw the WriteLine()s
+			// 2) There are graphical glitches that surface when using WriteLines, especially when resizing the terminal window (duplicate lines, etc.)
 			StringBuilder output = new StringBuilder();
 
 			Console.SetCursorPosition(0, 0);
 
 			output.Append($"Sessions until Long Break: {timer.longBreakCounter}\n");
-			output.Append($"Currently mode: {timer.currentMode}\n");
+			output.Append($"Current mode: {timer.currentMode}\n");
 			output.Append(Menu.DisplayTimerPaused(timer) + "\n\n");
 			output.Append($"Timer: {Menu.FormatTime(timer.currentDuration)}\n\n");
 			output.Append("(P) - PAUSE        (C) CONTINUE        (ESC) QUIT TO MENU");
@@ -106,11 +89,10 @@ namespace Tick.App
 
 		public static string FormatTime(int totalSeconds)
 		{
-			int minutes = totalSeconds / 60;
-			int seconds = totalSeconds % 60;
-			return $"{minutes:D2}:{seconds:D2}"; // Formats the string to "MM:SS"
+			// int minutes = totalSeconds / 60;
+			// int seconds = totalSeconds % 60;
+			// return $"{minutes:D2}:{seconds:D2}"; // Formats the string to "MM:SS"
+			return $"{totalSeconds}";
 		}
-
-
 	}
 }

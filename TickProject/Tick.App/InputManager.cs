@@ -4,6 +4,7 @@ namespace Tick.App
 	public class InputManager
 	{
 
+		// TODO add test for this
 		public static int GetInt()
 		{
 			int num;
@@ -13,6 +14,7 @@ namespace Tick.App
 			}
 			return num;
 		}
+		// TODO remove this and matching test
 		public static int StringToInt(string str)
 		{
 			int num;

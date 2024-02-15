@@ -5,7 +5,7 @@
 using System.Xml.Serialization;
 namespace Tick.App
 {
-
+	// TODO see if you can add Alerts
 	[Serializable]
 	[XmlInclude(typeof(Session))]
 	[XmlInclude(typeof(ShortBreak))]

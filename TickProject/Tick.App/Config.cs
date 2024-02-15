@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 
 namespace Tick.App
 {
+	// TODO chagne hardcoded paths to using this.path
 	public class Config
 	{
 		public string path = @"./timers.xml";

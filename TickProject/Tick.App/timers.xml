@@ -44,4 +44,48 @@
     <currentDuration>1</currentDuration>
     <paused>false</paused>
   </Timer>
+  <Timer>
+    <countdowns>
+      <Countdown xsi:type="Session">
+        <duration>3</duration>
+      </Countdown>
+      <Countdown xsi:type="ShortBreak">
+        <duration>3</duration>
+      </Countdown>
+      <Countdown xsi:type="LongBreak">
+        <duration>3</duration>
+        <interval>3</interval>
+        <intervalCounter>0</intervalCounter>
+      </Countdown>
+    </countdowns>
+    <name>3</name>
+    <longBreakInterval>4</longBreakInterval>
+    <longBreakCounter>4</longBreakCounter>
+    <currentMode>Session</currentMode>
+    <nextMode>Short Break</nextMode>
+    <currentDuration>3</currentDuration>
+    <paused>false</paused>
+  </Timer>
+  <Timer>
+    <countdowns>
+      <Countdown xsi:type="Session">
+        <duration>5</duration>
+      </Countdown>
+      <Countdown xsi:type="ShortBreak">
+        <duration>5</duration>
+      </Countdown>
+      <Countdown xsi:type="LongBreak">
+        <duration>10</duration>
+        <interval>3</interval>
+        <intervalCounter>0</intervalCounter>
+      </Countdown>
+    </countdowns>
+    <name>5seconds</name>
+    <longBreakInterval>4</longBreakInterval>
+    <longBreakCounter>4</longBreakCounter>
+    <currentMode>Session</currentMode>
+    <nextMode>Short Break</nextMode>
+    <currentDuration>5</currentDuration>
+    <paused>false</paused>
+  </Timer>
 </ArrayOfTimer>
