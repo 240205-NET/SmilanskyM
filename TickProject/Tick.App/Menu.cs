@@ -50,7 +50,7 @@ namespace Tick.App
 
 		public void DisplayMenuView()
 		{
-			Console.WriteLine("Select a number (1-4) from the options below:\n");
+			Console.WriteLine("Select a number (1-5) from the options below:\n");
 			Console.WriteLine("1: Start Timer");
 			Console.WriteLine("2: Add Timer");
 			Console.WriteLine("3: View Timers");
