@@ -28,21 +28,20 @@ namespace Tick.App
 			int currentTimer = 0;
 			if (timers.Count < 1)
 			{
-				formattedTimers.AppendLine("Uh oh, you don't have any timers to view!");
+				formattedTimers.AppendLine("Uh oh, you don't have any timers!");
 				return formattedTimers.ToString();
 			}
 			else
 			{
-				currentTimer = 1;
-				formattedTimers.AppendLine($"You have {timers.Count} timers in your config: \n");
+				int count = 1;
 				foreach (Timer t in timers)
 				{
-					formattedTimers.AppendLine($"{currentTimer}): {t.name}\n");
-					formattedTimers.AppendLine($"Session: {t.countdowns[0].duration}");
-					formattedTimers.AppendLine($"Short Break: {t.countdowns[1].duration}");
-					formattedTimers.AppendLine($"Long Break: {t.countdowns[2].duration}");
-					formattedTimers.AppendLine($"Long Break Interval: {t.longBreakInterval}\n\n");
-					currentTimer++;
+					formattedTimers.AppendLine($"{count}) {t.name}\n");
+					formattedTimers.AppendLine($"  {t.countdowns[0].duration} (Session)");
+					formattedTimers.AppendLine($"  {t.countdowns[1].duration} (Short Break)");
+					formattedTimers.AppendLine($"  {t.countdowns[2].duration} (Long Break)");
+					formattedTimers.AppendLine($"  {t.longBreakInterval} (Long Break Interval)\n");
+					count++;
 				}
 			}
 			return formattedTimers.ToString();
@@ -51,11 +50,12 @@ namespace Tick.App
 
 		public void DisplayMenuView()
 		{
-			Console.WriteLine("Choose a number (1-4) from the options below:\n");
-			Console.WriteLine("1: Choose Timer");
+			Console.WriteLine("Select a number (1-4) from the options below:\n");
+			Console.WriteLine("1: Start Timer");
 			Console.WriteLine("2: Add Timer");
 			Console.WriteLine("3: View Timers");
-			Console.WriteLine("4: Delete Timer\n");
+			Console.WriteLine("4: Delete Timer");
+			Console.WriteLine("5: Demo Mode\n");
 		}
 
 		public void DisplayWelcomeMessage()
@@ -67,31 +67,37 @@ namespace Tick.App
 
 		public static string DisplayTimerPaused(Timer timer)
 		{
-			return timer.paused ? "Timer PAUSED" : "Timer ACTIVE";
+			// 8 blank spaces effectively erases the (paused) text without having to Console.Clear()
+			return timer.paused ? "(paused)" : "        ";
 		}
 		public void DisplayTimerState(Timer timer)
 		{
 			// The StringBuilder approach (as opposed to using Console.WriteLine()s) is advantageous because:
-			// 1) The cursor position only needs to be set once as opposed to on every line we want to draw the WriteLine()s
-			// 2) There are graphical glitches that surface when using WriteLines, especially when resizing the terminal window (duplicate lines, etc.)
+			// 1) The cursor position only needs to be set once as opposed to on every line we want to draw the text
+			// 2) There are graphical glitches that surface when using WriteLines, especially when resizing the terminal window (duplicate lines, displaced text, etc.)
 			StringBuilder output = new StringBuilder();
 
 			Console.SetCursorPosition(0, 0);
 
-			output.Append($"Sessions until Long Break: {timer.longBreakCounter}\n");
-			output.Append($"Current mode: {timer.currentMode}\n");
-			output.Append(Menu.DisplayTimerPaused(timer) + "\n\n");
-			output.Append($"Timer: {Menu.FormatTime(timer.currentDuration)}\n\n");
+			output.Append($"Sessions until Long Break: {timer.longBreakCounter}\n\n");
+			output.Append($"Current mode: {timer.currentMode}\n\n");
+			output.Append($"Timer: {Menu.FormatTime(timer.currentDuration)} {Menu.DisplayTimerPaused(timer)}\n\n");
 			output.Append("(P) - PAUSE        (C) CONTINUE        (ESC) QUIT TO MENU");
 
 			Console.Write(output.ToString());
+
+			Console.SetCursorPosition(0, 0);
 		}
 
 		public static string FormatTime(int totalSeconds)
 		{
-			// int minutes = totalSeconds / 60;
-			// int seconds = totalSeconds % 60;
-			// return $"{minutes:D2}:{seconds:D2}"; // Formats the string to "MM:SS"
+			int minutes = totalSeconds / 60;
+			int seconds = totalSeconds % 60;
+			// Formats the countdown as "mm:ss"
+			return $"{minutes:D2}:{seconds:D2}";
+		}
+		public static string FormatTimeDemo(int totalSeconds)
+		{
 			return $"{totalSeconds}";
 		}
 	}

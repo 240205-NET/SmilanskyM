@@ -4,3 +4,20 @@ create simple queries
 get student, all st udent, teachers, all teachers
 
 keep in proram class b ut outside main
+
+dotnet add package System.Data.SqlClient adds to csproj when wrun in School.App dir
+dotnet new classlib -n School.Data 
+dotnet add reference ../School.Data (from within School.App)
+dotnet add reference ../School.Data (from within School.Logic)
+
+    /*
+           what is project, what it's designed to do  
+           any features, cherry on top
+           stretch goals we were able to reach
+           demo it, expl how it reaches those reqs
+           close it and show the data persisted
+           leave time for questions
+           answer questions about application
+           
+            1:30 in afternoon vid - lawrence's question quiz fri? monday qc?
+            */

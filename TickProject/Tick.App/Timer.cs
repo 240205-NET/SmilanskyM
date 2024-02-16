@@ -25,6 +25,7 @@ namespace Tick.App
 			this.countdowns.Add(new ShortBreak(shortBreakLength));
 			this.countdowns.Add(new LongBreak(longBreakLength, longBreakInterval));
 			this.currentDuration = this.countdowns[0].duration;
+			this.longBreakInterval = longBreakInterval;
 			this.longBreakCounter = this.longBreakInterval;
 		}
 	}

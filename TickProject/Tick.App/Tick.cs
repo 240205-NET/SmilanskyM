@@ -4,10 +4,12 @@ namespace Tick.App
 {
     class Tick
     {
+        // These two fields are read only because
+        // their original value should never be changed.
         readonly Config config = new Config();
         readonly Menu menu = new Menu();
-        public bool isPaused = false;
-        public volatile bool timerActive = true;
+
+        public bool timerActive = true;
         public void ContentWrapper(Action content)
         {
             this.menu.GetCurrentView();
@@ -17,7 +19,7 @@ namespace Tick.App
         public void Run()
         {
 
-
+            // TODO impl Timer.ToString() override method
             bool loop = true;
             while (loop)
             {
@@ -34,7 +36,7 @@ namespace Tick.App
                     case "1":
                         Console.Clear();
                         this.menu.currentView = "Choose Timer";
-                        this.ContentWrapper(this.ChooseTimer);
+                        this.ContentWrapper(this.StartTimer);
                         break;
                     case "2":
                         Console.Clear();
@@ -53,7 +55,8 @@ namespace Tick.App
                         break;
                     case "5":
                         Console.Clear();
-                        this.RunTimer(new Timer("Demo Timer"));
+                        Demo demo = new Demo(this.menu);
+                        demo.RunTimerDemo(new Timer("Demo Timer", 4, 4, 4, 3));
                         break;
                     default:
                         break;
@@ -72,22 +75,44 @@ namespace Tick.App
 
             while (deletingTimer)
             {
+                if (allTimers.Count == 0)
+                {
+                    bool awaitingExit = true;
+                    while (awaitingExit)
+                    {
+
+                        Console.WriteLine(formattedTimers + "\n");
+                        Console.WriteLine("***PRESS (ESC} TO RETURN TO MAIN MENU***");
+                        ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                        if (keyInfo.Key == ConsoleKey.Escape)
+                        {
+                            return;
+                        }
+                    }
+                }
                 Console.WriteLine("Choose a timer (by name) to delete: \n\n");
                 Console.WriteLine(formattedTimers + "\n");
                 Timer chosenTimer;
-                while (!validTimer)
+                while (!validTimer && allTimers.Count > 0)
                 {
                     Console.Write("\nYour choice: ");
                     string userInput = Console.ReadLine();
                     chosenTimer = allTimers.Find(t => t.name == userInput);
                     if (chosenTimer == null)
                     {
-                        Console.WriteLine("Sorry, there is no timer with that name. Please enter a valid name.");
+                        Console.WriteLine("\nSorry, there is no timer with that name. Please enter a valid name.");
                     }
                     else
                     {
                         validTimer = true;
-                        Console.WriteLine($"Timer with name {chosenTimer.name} deleted! Why would you do such a thing? :/ Oh well... taking you back to Main Menu...");
+                        this.config.RemoveTimer(chosenTimer.name);
+                        Thread.Sleep(1000);
+                        Console.WriteLine("...");
+                        Thread.Sleep(1000);
+                        Console.WriteLine("...");
+                        Thread.Sleep(1000);
+                        Console.WriteLine($"Timer \"{chosenTimer.name}\" deleted succssfully!");
+                        Thread.Sleep(3000);
                         deletingTimer = false;
                     }
                 }
@@ -141,10 +166,10 @@ namespace Tick.App
             Thread.Sleep(1000);
             Console.WriteLine("...");
             Thread.Sleep(1000);
-            Console.WriteLine("Timer added succssfully!");
-            Thread.Sleep(1000);
+            Console.WriteLine($"Timer \"{timer.name}\" added succssfully!");
+            Thread.Sleep(2000);
         }
-        public void ChooseTimer()
+        public void StartTimer()
         {
             List<Timer> timers = this.config.GetAllTimers();
             bool loop = true;
@@ -161,12 +186,15 @@ namespace Tick.App
                     else
                     {
                         Console.WriteLine("Please choose a timer name:\n");
+                        int count = 1;
                         foreach (Timer t in timers)
                         {
-                            Console.Write($"{t.name} - {t.countdowns[0].duration}, {t.countdowns[1].duration}, {t.countdowns[2].duration}");
-                            // Since Countdown does not include the 'interval' field (only LongBreak does), you can't iterate over Countdowns to get to 'interval'; Instead, check if it's of type LongBreak.
-                            if (t.countdowns[2] is LongBreak longBreak) { Console.WriteLine($"{longBreak.interval}"); } else { Console.WriteLine("TODO"); }
-
+                            Console.Write($"{count}) {t.name}\n\n");
+                            Console.Write($"  {t.countdowns[0].duration} (Session)\n");
+                            Console.Write($"  {t.countdowns[1].duration} (Short Break)\n");
+                            Console.Write($"  {t.countdowns[2].duration} (Long Break)\n");
+                            Console.Write($"  {t.longBreakInterval} (Long Break Interval)\n\n");
+                            count++;
                         }
                         bool validTimer = false;
                         while (!validTimer)
@@ -176,7 +204,7 @@ namespace Tick.App
                             Timer chosenTimer = timers.FirstOrDefault(t => t.name == userInput);
                             if (chosenTimer == null)
                             {
-                                Console.WriteLine("Sorry, there is no timer with that name. Please enter a valid name.");
+                                Console.WriteLine("\nSorry, there is no timer with that name. Please enter a valid name.");
                             }
                             else
                             {
@@ -224,90 +252,12 @@ namespace Tick.App
             while (this.timerActive)
             {
                 this.HandleCurrentMode(timer);
-                // if (timer.currentMode == "Session")
-                // {
-                //     timer.currentDuration = timer.countdowns[0].duration * 60; // mins to seconds
-                //     timer.currentDuration = timer.countdowns[0].duration;
-                //     while (timer.currentDuration >= 0)
-                //     {
-                //         if (!this.timerActive)
-                //         {
-                //             Console.Clear();
-                //             return;
-                //         }
-                //         if (!timer.paused)
-                //         {
-                //             this.menu.DisplayTimerState(timer);
-                //             timer.currentDuration--;
-                //         }
-                //         else
-                //         {
-                //             this.menu.DisplayTimerState(timer);
-                //         }
-                //         Thread.Sleep(1000);
-                //     }
-                //     if (timer.longBreakCounter == 0)
-                //     {
-                //         timer.currentMode = "Long Break";
-                //         timer.longBreakInterval = 0;
-                //     }
-                //     else
-                //     {
-                //         timer.currentMode = "Short Break";
-                //     }
-                //     Console.Clear();
-                // }
-
-                // if (timer.currentMode == "Short Break")
-                // {
-                //     timer.currentDuration = timer.countdowns[1].duration * 60;
-                //     while (timer.currentDuration >= 0)
-                //     {
-                //         if (!this.timerActive)
-                //         {
-                //             Console.Clear();
-                //             return;
-                //         }
-                //         if (!timer.paused)
-                //         {
-                //             this.menu.DisplayTimerState(timer);
-                //             timer.currentDuration--;
-
-                //         }
-                //         Thread.Sleep(1000);
-                //     }
-                //     timer.longBreakCounter--;
-                //     timer.currentMode = "Session";
-                //     Console.Clear();
-                // }
-                // if (timer.currentMode == "Long Break")
-                // {
-                //     timer.longBreakCounter = 4;
-                //     timer.currentDuration = timer.countdowns[2].duration * 60;
-                //     while (timer.currentDuration >= 0)
-                //     {
-                //         if (!this.timerActive)
-                //         {
-                //             Console.Clear();
-                //             return;
-                //         }
-                //         if (!timer.paused)
-                //         {
-                //             this.menu.DisplayTimerState(timer);
-                //             timer.currentDuration--;
-
-                //         }
-                //         Thread.Sleep(1000);
-                //     }
-                //     timer.currentMode = "Session";
-                //     Console.Clear();
-
-                // }
             }
         }
 
         public void HandleCurrentMode(Timer timer)
         {
+
             // Set the currentDuration based on the currentMode
             timer.currentDuration = timer.currentMode == "Session" ?
             timer.countdowns[0].duration * 60 :
@@ -344,7 +294,7 @@ namespace Tick.App
                 {
                     // Set the current mode to Long Break and Reset the Long Break counter 
                     timer.currentMode = "Long Break";
-                    timer.longBreakCounter = timer.longBreakInterval;
+                    timer.longBreakCounter = timer.longBreakInterval + 1;
                 }
                 else
                 {

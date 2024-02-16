@@ -1,12 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace Tick.App
 {
-	// TODO chagne hardcoded paths to using this.path
 	public class Config
 	{
 		public string path = @"./timers.xml";
@@ -32,7 +29,7 @@ namespace Tick.App
 		}
 		public Timer GetTimer(string name)
 		{
-			List<Timer> timers = Config.DeserializeFromXml("timers.xml");
+			List<Timer> timers = Config.DeserializeFromXml(this.path);
 			Timer timer = timers.FirstOrDefault(timer => timer.name == name);
 			return timer;
 		}
@@ -55,7 +52,7 @@ namespace Tick.App
 			if (File.Exists(this.path))
 			{
 				XmlSerializer serializer = new XmlSerializer(typeof(List<Timer>));
-				timers = Config.DeserializeFromXml("timers.xml");
+				timers = Config.DeserializeFromXml(this.path);
 			}
 			else
 			{
@@ -63,28 +60,26 @@ namespace Tick.App
 			}
 
 			timers.Add(timer);
-			Config.SerializeToXml(timers, "timers.xml");
+			Config.SerializeToXml(timers, this.path);
 		}
 
 		public Timer EditTimer(string name)
 		{
-			List<Timer> timers = Config.DeserializeFromXml("timers.xml");
+			List<Timer> timers = Config.DeserializeFromXml(this.path);
 			Timer timer = timers.FirstOrDefault(timer => timer.name == name);
 			if (timer != null)
 			{
 				timer.name = name;
 			}
-			Config.SerializeToXml(timers, "timers.xml");
+			Config.SerializeToXml(timers, this.path);
 			return timer;
 		}
 
 		public void RemoveTimer(string name)
 		{
-			List<Timer> timers = Config.DeserializeFromXml("timers.xml");
+			List<Timer> timers = Config.DeserializeFromXml(this.path);
 			timers.RemoveAll(t => t.name == name);
-			Config.SerializeToXml(timers, "timers.xml");
+			Config.SerializeToXml(timers, this.path);
 		}
-
-
 	}
 }
