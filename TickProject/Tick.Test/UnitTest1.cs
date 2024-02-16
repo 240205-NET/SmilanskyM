@@ -7,11 +7,10 @@ using Tick.App;
 
 public class UnitTest1
 {
-
     // This test deletes timers.xml before the other tests are executed
     // This ensures that the rest of the tests (the ones that interact with timers.xml) are normalized in their execution
     [Fact]
-    public void TickApp_DeleteXmlForFreshTesting_Works()
+    public void TickApp_DeleteXmlToNormalizeTesting_Works()
     {
         if (File.Exists("timers.xml"))
         {

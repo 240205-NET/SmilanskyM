@@ -73,7 +73,7 @@ namespace Tick.App
 		public void DisplayTimerState(Timer timer)
 		{
 			// The StringBuilder approach (as opposed to using Console.WriteLine()s) is advantageous because:
-			// 1) The cursor position only needs to be set once as opposed to on every line we want to draw the text
+			// 1) The cursor position only needs to be set once as opposed to on every line to draw the text
 			// 2) There are graphical glitches that surface when using WriteLines, especially when resizing the terminal window (duplicate lines, displaced text, etc.)
 			StringBuilder output = new StringBuilder();
 

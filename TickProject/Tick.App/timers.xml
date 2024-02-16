@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTimer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Timer>
+    <countdowns>
+      <Countdown xsi:type="Session">
+        <duration>30</duration>
+      </Countdown>
+      <Countdown xsi:type="ShortBreak">
+        <duration>5</duration>
+      </Countdown>
+      <Countdown xsi:type="LongBreak">
+        <duration>10</duration>
+        <interval>4</interval>
+        <intervalCounter>0</intervalCounter>
+      </Countdown>
+    </countdowns>
+    <name>Timer 2</name>
+    <longBreakInterval>4</longBreakInterval>
+    <longBreakCounter>4</longBreakCounter>
+    <currentMode>Session</currentMode>
+    <nextMode>Short Break</nextMode>
+    <currentDuration>30</currentDuration>
+    <paused>false</paused>
+  </Timer>
+</ArrayOfTimer>

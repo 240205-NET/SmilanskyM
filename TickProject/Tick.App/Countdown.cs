@@ -1,11 +1,8 @@
 // Countdown must be abstract since each type of countdown (session, short break, long break) 
 // should have somewhat unique functionality and features 
-// For instance, the abstract Countdown class has an abstract Alert() function so that
-// Each type of countdown can alert the user when it's over in a different way (contextually speaking).
 using System.Xml.Serialization;
 namespace Tick.App
 {
-	// TODO see if you can add Alerts
 	[Serializable]
 	[XmlInclude(typeof(Session))]
 	[XmlInclude(typeof(ShortBreak))]
