@@ -1,0 +1,30 @@
+- API
+    - Manip data and perform CRUD operations
+    - endopints specify a behavior 
+    - we've used an API
+    - LINQ is an API
+    - a set of functionality we can trigger to run specific bheavior
+    - my application interfaces with some set of logic
+    - API is a full program can run on its own, we can leverage the resources that are a part of it 
+    - you specify requests, the API does most of the heavy lifting
+    - HTTP, HTTPS are the protocols we use to navigate the web
+    - HTTP reqs are a full list of instructions, has info metadata descripting type of request, content, return this type of content
+    - C# and .NET libs provides tools for HTTP
+    - get put post represnets the type of request
+    - get - asking for resource - a webpage, object, set of data etc
+    - delete - delete what i tell u 2 delete
+        - these are both 1 result
+    - put and post
+    - post creates a new ob
+    - put updates existing obj
+        - both require sending an obj
+    - in header we can specify request - in get and delete we just need header
+    - with a put or post, we ahve a header specifying where req goes and there's more info we need to send - the obj
+        - so a header and a body
+    - client-server relationship
+    - 
+    HTTPConsumer.app
+    HTTPConsumer slution anme
+    do not place in same dir
+    keep framework 7.0
+    don't check  top level statements
