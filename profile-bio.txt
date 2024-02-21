@@ -1,0 +1,6 @@
+I am a full-stack .NET software developer with experience building multi-tier web applications. I’m a self-taught developer and student of computer science, having originally earned my Bachelor of Arts degree in English Literature from the University of California, Los Angeles. I am passionate about technology and self-driven to continue learning and growing as much as possible in the field of software engineering, and am excited at the prospect of contributing elegant solutions to difficult problems in a team setting.
+
+During my time at Revature, I have worked on several projects, both individual and team-based, involving several back-end and front-end technologies, including C#, SQL, ASP.NET, microservices, HTML, CSS, JavaScript, TypeScript, and Angular. I enjoy working in a team-based setting and am an avid proponent of strong and effective communication amongst team members, as I believe it fosters a healthy and productive work environment as well as a better product as a result.
+
+Through my independent work and projects, I have gained familiarity and proficiency of various full-stack web technologies within the JavaScript ecosystem such as Express.js, React.js, and Next.js. I also learned how to work with databases such as MongoDB and PostgreSQL and have a deep understanding of querying and data modeling.
+

@@ -1,0 +1,41 @@
+MONDAY 2/26 QUALITY CONTROL TOPICS:
+
+ASP.NET
+API REST
+WCF
+
+app architecture
+monolitich - single large app - can manage data, UI,
+tight coupling
+
+service-oriented architecture - SOA
+smaller units
+small app whose only job is managing data in and out of the db
+small service for logging in 
+small service for ui, placing order, etc.
+these are separate apps, separate entities
+one can start/stop without affecting others
+if db goes down, ui can still run
+loosely coupled
+
+safe methods 
+OPTIONS methods
+idempotent - identical request can be made several times in a row with same effect and leave serveri n same state as first request
+
+all safe methods are idempotent
+delete is idempotent but not safe
+REST representaional state transfer
+
+we don't have a formal protocol so we use resource identifiers (files, objects) etc. that are identified by an individual address (url/uri) - 
+- rest says we use client/server arch - that these  ideas are loosely coupled - which allows for sep of concerns, interoperability, granular development
+must be stateless...
+stateless servers - no state (current conditions) are stored on the server - everything in the req has everything needed to make it - no request depedns on it, and it depends only on itself
+
+client caching is needed to support stateless servers - time based memory - hold on too this for 10 days, 30 mins etc.
+
+
+rest uniform interface consistent methods b ehaviors - loos coupiling (consistentcy_) 
+
+protocol - self descriptive mesesages
+layered system - services can act as both client and server
+code on demand - a restful service can download and use a new set of code as its running
