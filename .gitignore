@@ -6,6 +6,10 @@
 # dotenv files
 .env
 
+####################
+##### Project 2 ####
+####################
+team-green/
 # User-specific files
 *.rsuser
 *.suo
