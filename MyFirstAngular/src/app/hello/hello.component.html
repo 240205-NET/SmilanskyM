@@ -1,0 +1,13 @@
+<p>hello works!</p>
+<p>String Interpolation: {{ isTrue }}</p>
+<div *ngIf="isTrue">isTrue is true</div>
+
+<div *ngFor="let name of pets">The pet's name is {{ name }}</div>
+<!-- model binding, components directives decorator is what you should focus on -->
+
+<button (click)="negateIsTrue()">Negate isTrue</button>
+<button (click)="negateShowPets()" [class]="attrBinding">Show Pets</button>
+
+<div *ngIf="showPets" [class]="attrBinding">
+  <div *ngFor="let name of pets">The pet's name is: {{ name }}</div>
+</div>
