@@ -1,0 +1,38 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+# What is the name of this workflow?
+name: .NET
+
+# When does this run?
+on:
+# Run whenever there is a push to main branch
+  push:
+    branches: [ "main", "additional-branch" ]
+  # Run whenever there is a PR merging to main
+  pull_request:
+    branches: [ "main" ]
+  # Manually trigger this workflow
+  workflow_dispatch:
+
+# What should this pipeline workflow do?
+jobs:
+# Name for the job. This job's name is "build"
+  build:
+  # What kind of VM is this running on? windows-latest, mac-latest, etc. runners TODO what is a runner? https://github.com/actions/runner-images for list of runners 
+    runs-on: ubuntu-latest
+    # explicit instructions for the runner/vm to execute 
+    steps:
+    # uses refers to pre-made actions available in marketplace - premade code we can take and use
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+    # what to do
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
