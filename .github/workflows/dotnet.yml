@@ -14,7 +14,8 @@ on:
     branches: [ "main" ]
   # Manually trigger this workflow
   workflow_dispatch:
-
+env: 
+  WORKING_DIR: "TickProject"
 # What should this pipeline workflow do?
 jobs:
 # Name for the job. This job's name is "build"
@@ -25,13 +26,9 @@ jobs:
     steps:
     # uses refers to pre-made actions available in marketplace - premade code we can take and use
     - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
     - name: Restore dependencies
+      run: dotnet restore $({env.WORKING_DIR)} # restore looks at your .csproj file and then amkes sure that all your references are there and ready to build 
     # what to do
-      run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
     - name: Test
