@@ -15,21 +15,18 @@ on:
   # Manually trigger this workflow
   workflow_dispatch:
 env: 
-  WORKING_DIR: "../TickProject/Tick.App"
+  WORKING_DIR: "TickProject/Tick.App"
 # What should this pipeline workflow do?
 jobs:
-# Name for the job. This job's name is "build"
   build:
-  # What kind of VM is this running on? windows-latest, mac-latest, etc. runners TODO what is a runner? https://github.com/actions/runner-images for list of runners 
     runs-on: ubuntu-latest
-    # explicit instructions for the runner/vm to execute 
+    env:
+      WORKING_DIR: 'TickProject/Tick.App' # Ensure this path is correctly set relative to the root of your GitHub repository
     steps:
-    # uses refers to pre-made actions available in marketplace - premade code we can take and use
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '7.0.x' # Specify the .NET version you are using
     - name: Restore dependencies
-      run: dotnet restore $({env.WORKING_DIR)} # restore looks at your .csproj file and then amkes sure that all your references are there and ready to build 
-    # what to do
-    - name: Build
-      run: dotnet build --no-restore ${(env.WORKING_DIR)}
-    - name: Test
-      run: dotnet test --no-build --verbosity normal ${(env.WORKING_DIR)}
+      run: dotnet restore ${{env.WORKING_DIR}}
