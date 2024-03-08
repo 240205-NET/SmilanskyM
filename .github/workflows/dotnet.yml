@@ -15,7 +15,7 @@ on:
   # Manually trigger this workflow
   workflow_dispatch:
 env: 
-  WORKING_DIR: "TickProject"
+  WORKING_DIR: "TickProject/Tick.App"
 # What should this pipeline workflow do?
 jobs:
 # Name for the job. This job's name is "build"
