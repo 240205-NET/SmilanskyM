@@ -30,6 +30,6 @@ jobs:
       run: dotnet restore $({env.WORKING_DIR)} # restore looks at your .csproj file and then amkes sure that all your references are there and ready to build 
     # what to do
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore ${(env.WORKING_DIR)}
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal ${(env.WORKING_DIR)}
