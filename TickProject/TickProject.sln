@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tick", "Tick\Tick.csproj", "{E132122B-6D57-4A9D-B949-28E0E3DF9D32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tick", "Tick.App\Tick.App.csproj", "{E132122B-6D57-4A9D-B949-28E0E3DF9D32}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tick.Test", "Tick.Test\Tick.Test.csproj", "{C24B42A9-85BA-47CD-98F5-7CC29AB35FCB}"
 EndProject
